@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
-import Model from '../../../Desktop/property-pro-api/src/models/model';
+import Model from '../models/model';
+import { assignToken } from '../utils/helper';
 
-const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const agentModel = new Model('agents');
@@ -15,19 +15,17 @@ export const Agentsignup = async (req, res) => {
   const columns = 'first_name, last_name, password, email, phone_number ';
   const strong = await bcrypt.hash(password, 12);
   const values = `'${firstName}', '${lastName}', '${strong}', '${email}', '${phoneNumber}'`;
-  const checkEmail = await agentModel.select('*', ` where email = '${email}' `);
+  const isEmail = await agentModel.select('*', ` where email = '${email}' `);
 
   try {
-    if (checkEmail.rowCount < 1) {
+    if (isEmail.rowCount < 1) {
       const data = await agentModel.insertWithReturn(columns, values);
-      const newUser = { firstName, lastName, email };
+      const newUser = {
+        firstName, lastName, email, id: data.rows.id
+      };
 
-      const token = jwt.sign(
-        { ...newUser, id: data.rows.id },
-        process.env.TOKEN_KEY,
-        { expiresIn: '1hr' }
-      );
-      res
+      const token = assignToken(newUser);
+      return res
         .status(201)
         .send({
           user: newUser,
@@ -35,8 +33,9 @@ export const Agentsignup = async (req, res) => {
           message: 'Account created successfully',
         });
     }
+    return res.status(401).send({ message: 'Account already exist' });
   } catch (err) {
-    res.status(400).json({ message: err.stack });
+    return res.status(400).json({ message: err.stack });
   }
 };
 
@@ -47,16 +46,14 @@ export const agentLogin = async (req, res) => {
       '*',
       ` WHERE  email = '${email}' `
     );
-    if (!validEmail.rows.length) { return res.status(400).json({ messages: 'Validate email or password 1' }); }
+    if (!validEmail.rows.length) { return res.status(400).json({ messages: 'Invalid email or password 1' }); }
     const validPassword = await bcrypt.compare(
       password,
       validEmail.rows[0].password
     );
-    if (!validPassword) { return res.status(400).json({ message: 'Validate email or password' }); }
+    if (!validPassword) { return res.status(400).json({ message: 'Invalid email or password' }); }
     const user = { email };
-    const token = jwt.sign({ user }, process.env.TOKEN_KEY, {
-      expiresIn: '1hr',
-    });
+    const token = assignToken(user);
     return res
       .status(201)
       .send({ ...user, token, message: 'Logged in Successfully' });
