@@ -22,7 +22,7 @@ export const Agentsignup = async (req, res) => {
       const data = await agentModel.insertWithReturn(columns, values);
       const {id} = data.rows[0];
       const newUser = {
-       id, firstName, lastName, email
+        id, firstName, lastName, email
       };
 
       const token = assignToken(newUser);
