@@ -20,8 +20,9 @@ export const Agentsignup = async (req, res) => {
   try {
     if (isEmail.rowCount < 1) {
       const data = await agentModel.insertWithReturn(columns, values);
+      const {id} = data.rows[0];
       const newUser = {
-        firstName, lastName, email, id: data.rows.id
+        id, firstName, lastName, email
       };
 
       const token = assignToken(newUser);

@@ -22,15 +22,43 @@ export const validateUserSignup = (req, res, next) => {
   if (!req.body.email || !validateEmail(req.body.email)) {
     errorList.push({ message: 'please insert a valid email address' });
   }
-
   if (!req.body.password || req.body.password.length < 8) {
     errorList.push({ message: 'password should be a minimum of 8 characters' });
   }
   console.log(errorList);
-
   if (errorList.length === 0) {
     next();
   } else {
     res.status(400).json({ message: errorList });
   }
+};
+export const validatePropertyInput = (req, res, next) => {
+  const {
+    image, title, address, landSize, numberOfBeds, numberOfBaths, neigbourhood, price
+  } = req.body;
+  if (image === '') {
+    res.status(400).send('image of property must be uploaded');
+  }
+  if (title === '') {
+    res.status(400).send('Input the title of the property');
+  }
+  if (address === '') {
+    res.status(400).send('Input the address of the property ');
+  }
+  if (landSize === '') {
+    res.status(400).send('Input size of land');
+  }
+  if (numberOfBeds === '') {
+    res.status(400).send('input number of beds');
+  }
+  if (numberOfBaths === '') {
+    res.status(400).send('Input number of baths');
+  }
+  if (neigbourhood === '') {
+    res.status(400).send('Input neigbourhood');
+  }
+  if (price === '') {
+    res.status(400).send('Input property price');
+  }
+  next();
 };

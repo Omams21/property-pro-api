@@ -1,6 +1,6 @@
 import { pool } from '../models/pool';
 import {
-  createAgentTable,
+  createAgentTable, createPropertyTable,
 } from './queries';
 
 export const executeQueryArray = async arr => new Promise(resolve => {
@@ -12,3 +12,4 @@ export const executeQueryArray = async arr => new Promise(resolve => {
 });
 
 export const createAgentTables = () => executeQueryArray([ createAgentTable ]);
+export const createPropertiesTables = () => executeQueryArray([ createPropertyTable ]);
