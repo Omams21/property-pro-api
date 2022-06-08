@@ -31,7 +31,7 @@ export const Agentsignup = async (req, res) => {
         .send({
           user: newUser,
           token,
-          message: 'Account created successfully',
+          message: 'Account created successfully'
         });
     }
     return res.status(401).send({ message: 'Account already exist' });
