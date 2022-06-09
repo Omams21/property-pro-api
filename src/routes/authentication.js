@@ -211,7 +211,7 @@ authenticationRouter.post(
  *     responses:
  *       200:
  *         description: property uploaded successfully
- *         example: {
+ *         example: [{
  *          "image": game.png,
  *          "title": "duplex",
  *          "price": "200000000",
@@ -223,7 +223,7 @@ authenticationRouter.post(
  *          "numberOfBaths": "3",
  *          "numberofbed": "4",
  *          "landSize": "4000"
- *         }
+ *        } ]
  *       400:
  *         description: Bad input supplied
  *       500:
@@ -274,7 +274,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *   get:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: retrive selected property from database
  *     produces:
  *       - application/json
  *     parameters:
@@ -314,7 +314,7 @@ authenticationRouter.get('/agent/property/:id', checkToken, getAgentProperties);
  *   put:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: update edited property in database
  *     produces:
  *       - application/json
  *     parameters:
@@ -360,7 +360,7 @@ authenticationRouter.put('/property/:id', checkToken, editProperty);
  *   delete:
  *     tags:
  *       - Property Details
- *     description: retrive all properties from database
+ *     description: delete selected property from database
  *     produces:
  *       - application/json
  *     parameters:
