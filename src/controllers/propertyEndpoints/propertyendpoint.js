@@ -83,12 +83,13 @@ export const deleteProperty = async (req, res) => {
 };
 
 export const getAgentProperties = async (req, res) => {
-  const userId = req.params.id;
+  const userId = req.user.user.id;
   try {
     const getProperties = await propertyModel.select(
       '*',
       ` WHERE agent_id = ${userId} `
     );
+    console.log(getProperties.rows);
     return res.status(200).json(getProperties.rows);
   } catch (err) {
     res.status(500).json({ messages: err.stack });
