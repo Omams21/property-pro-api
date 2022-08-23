@@ -3,6 +3,7 @@ import Model from '../../models/model';
 const propertyModel = new Model('properties');
 export const createProperty = async (req, res) => {
   const { id } = req.user.user;
+  console.log(req.user);
   const {
     image,
     title,
@@ -17,6 +18,7 @@ export const createProperty = async (req, res) => {
     numberOfBeds,
     landSize,
   } = req.body;
+  // const uploadImage = await uploadImageController(req.files);
   const columns =
     'agent_id, image_url, title, price, status, address, city, neighbourhood, lga, zip_code, number_of_baths, number_of_beds, land_size';
   const values = `'${id}', '${image}', '${title}', '${price}', '${status}', '${address}', '${city}', '${neighbourhood}', '${LGA}', '${ZIP}', '${numberOfBaths}', '${numberOfBeds}', '${landSize}'`;
@@ -24,6 +26,7 @@ export const createProperty = async (req, res) => {
     const data = await propertyModel.insertWithReturn(columns, values);
     res.status(201).json(data.rows);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ messages: err.stack.messages });
   }
 };
@@ -55,6 +58,7 @@ export const getPropertyById = async (req, res) => {
 };
 export const editProperty = async (req, res, next) => {
   const { id } = req.params;
+  console.log(id);
   const agentId = req.user.user.id;
   try {
     const data = await propertyModel.update(
@@ -83,14 +87,17 @@ export const deleteProperty = async (req, res) => {
 };
 
 export const getAgentProperties = async (req, res) => {
-  const userId = req.params.id;
+  console.log(req);
+  const userId = req.user.user.id;
   try {
     const getProperties = await propertyModel.select(
       '*',
       ` WHERE agent_id = ${userId} `
     );
+    console.log(getProperties.rows);
     return res.status(200).json(getProperties.rows);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ messages: err.stack });
   }
 };

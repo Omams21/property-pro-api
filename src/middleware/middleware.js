@@ -25,7 +25,7 @@ export const validateUserSignup = (req, res, next) => {
   if (!req.body.password || req.body.password.length < 8) {
     errorList.push({ message: 'password should be a minimum of 8 characters' });
   }
-  console.log(errorList);
+  // console.log(errorList);
   if (errorList.length === 0) {
     next();
   } else {
@@ -34,11 +34,18 @@ export const validateUserSignup = (req, res, next) => {
 };
 export const validatePropertyInput = (req, res, next) => {
   const {
-    image, title, address, landSize, numberOfBeds, numberOfBaths, neigbourhood, price
+    // image,
+    title,
+    address,
+    landSize,
+    numberOfBeds,
+    numberOfBaths,
+    neigbourhood,
+    price,
   } = req.body;
-  if (image === '') {
-    res.status(400).send('image of property must be uploaded');
-  }
+  // if (image === '') {
+  //   res.status(400).send('image of property must be uploaded');
+  // }
   if (title === '') {
     res.status(400).send('Input the title of the property');
   }

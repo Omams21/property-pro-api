@@ -14,7 +14,7 @@ export const createPropertyTable = `
 DROP TABLE IF EXISTS properties;
 CREATE TABLE "properties" (
   "id" serial primary key,
-  "agent_id" integer REFERENCES agentS(id),
+  "agent_id" integer REFERENCES agents(id),
   "image_url" varchar NOT NULL,
   "title" varchar (200) NOT NULL,
   "price" varchar (200) NOT NULL,

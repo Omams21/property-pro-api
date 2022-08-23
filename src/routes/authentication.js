@@ -10,6 +10,7 @@ import {
   getAllProperties,
   getPropertyById,
 } from '../controllers/propertyEndpoints/propertyendpoint';
+import { uploadImageController } from '../controllers/uploadImageController';
 import { checkToken } from '../middleware/auth';
 
 import {
@@ -62,14 +63,28 @@ const authenticationRouter = express.Router();
  *         description: Successfully created
  *         example: {
  *           "message": "Signed up successfully",
+<<<<<<< HEAD
  *           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXJyZW50VXNlciI6eyJpc0Jhbm5lZCI6MCwicGxhbiI6IlNpbHZlciIsImFjdGl2ZSI6ZmFsc2UsImlzQWRtaW4iOjAsImlkIjo1LCJ1c2VybmFtZSI6InRlc3RlciIsImZ1bGxOYW1lIjoiTmFzaXJ1IE9sYSIsImVtYWlsIjoibmFzaXJ1QGdtYWlsLmNvbSIsInVzZXJJZCI6NX0sImV4cCI6MTUxNTI1ODY4NywiaWF0IjoxNTE1MTcyMjg3fQ.1cISJjOboFY1zxqKEIZFpBJTSawG7BkMG6iGdhMxxGU"
  *         }
+=======
+ *          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXJyZW50
+ VXNlciI6eyJpc0Jhbm5lZCI6MCwicGxhbiI6IlNpbHZlciIsImFjdGl2ZS
+ I6ZmFsc2UsImlzQWRtaW4iOjAsImlkIjo1LCJ1c2VybmFtZSI6I
+ nRlc3RlciIsImZ1bGxOYW1lIjoiTmFzaXJ1IE9sYSIsImVtYW
+ lsIjoibmFzaXJ1QGdtYWlsLmNvbSIsInVzZXJJZCI6NX0sIm
+ V4cCI6MTUxNTI1ODY4NywiaWF0IjoxNTE1MTcyMjg3fQ.1cISJjOboFY1zxqKEIZFpBJTSawG7BkMG6iGdhMxxGU"
+ *        }
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
  *       400:
  *         description: Bad Username, Password or Email
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 authenticationRouter.post('/signup', validateUserSignup, Agentsignup);
+=======
+authenticationRouter.post('/signup', Agentsignup);
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
 
 /**
  * @swagger
@@ -107,7 +122,17 @@ authenticationRouter.post('/signup', validateUserSignup, Agentsignup);
  *         description: Successfully created
  *         example: {
  *           "message": "Signed up successfully",
+<<<<<<< HEAD
  *           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXJyZW50VXNlciI6eyJpc0Jhbm5lZCI6MCwicGxhbiI6IlNpbHZlciIsImFjdGl2ZSI6ZmFsc2UsImlzQWRtaW4iOjAsImlkIjo1LCJ1c2VybmFtZSI6InRlc3RlciIsImZ1bGxOYW1lIjoiTmFzaXJ1IE9sYSIsImVtYWlsIjoibmFzaXJ1QGdtYWlsLmNvbSIsInVzZXJJZCI6NX0sImV4cCI6MTUxNTI1ODY4NywiaWF0IjoxNTE1MTcyMjg3fQ.1cISJjOboFY1zxqKEIZFpBJTSawG7BkMG6iGdhMxxGU"
+=======
+ *           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+ .eyJjdXJyZW50VXNlciI6eyJpc0Jhbm5lZCI6MCwicGxhbiI6
+ IlNpbHZlciIsImFjdGl2ZSI6ZmFsc2UsImlzQWRtaW4iOjAsI
+ mlkIjo1LCJ1c2VybmFtZSI6InRlc3RlciIsImZ1bGxOYW1lIj
+ oiTmFzaXJ1IE9sYSIsImVtYWlsIjoibmFzaXJ1QGdtYWlsLmN
+ vbSIsInVzZXJJZCI6NX0sImV4cCI6MTUxNTI1ODY4NywiaWF0Ijo
+ xNTE1MTcyMjg3fQ.1cISJjOboFY1zxqKEIZFpBJTSawG7BkMG6iGdhMxxGU"
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
  *         }
  *       400:
  *         description: Bad Username, Password or Email
@@ -188,12 +213,18 @@ authenticationRouter.post('/login', agentLogin);
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 authenticationRouter.post(
   '/agent/properties',
   checkToken,
   validatePropertyInput,
   createProperty
 );
+=======
+authenticationRouter.post('/agent/properties', checkToken, createProperty);
+// validatePropertyInput,
+authenticationRouter.post('/upload', uploadImageController);
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
 
 /**
  * @swagger
@@ -307,7 +338,11 @@ authenticationRouter.get('/property/:id', getPropertyById);
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 authenticationRouter.get('/agent/property/:id', checkToken, getAgentProperties);
+=======
+authenticationRouter.get('/agent/property', checkToken, getAgentProperties);
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
 /**
  * @swagger
  * /property/{id}:
@@ -353,7 +388,11 @@ authenticationRouter.get('/agent/property/:id', checkToken, getAgentProperties);
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 authenticationRouter.put('/property/:id', checkToken, editProperty);
+=======
+authenticationRouter.put('/agent/property/:id', checkToken, editProperty);
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
 /**
  * @swagger
  * /property/{id}:
@@ -383,6 +422,10 @@ authenticationRouter.put('/property/:id', checkToken, editProperty);
  *       500:
  *         description: Internal server error
  */
+<<<<<<< HEAD
 authenticationRouter.delete('/property/:id', checkToken, deleteProperty);
+=======
+authenticationRouter.delete('/agent/property/:id', checkToken, deleteProperty);
+>>>>>>> 598187eb269a80c02186e2ccd1cd4200011fffcf
 
 export default authenticationRouter;
