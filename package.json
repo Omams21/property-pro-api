@@ -34,7 +34,6 @@
         "nodemon": "^2.0.15",
         "pg": "^8.7.3",
         "prettier": "^2.6.0",
-        "swagger": "^0.0.1",
         "swagger-jsdoc": "5.0.1",
         "swagger-ui-express": "^4.5.0"
     }
