@@ -28,11 +28,11 @@ const app = express();
 
 app.use('/propertypro-documentation', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
 app.use(fileUpload({ useTempFiles: true }));
 app.use('/v1', authenticationRouter);
 
