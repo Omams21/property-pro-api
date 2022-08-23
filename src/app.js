@@ -24,7 +24,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 const app = express();
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/propertypro-documentation', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(logger('dev'));
 app.use(express.json());
