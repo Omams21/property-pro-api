@@ -10,8 +10,8 @@ import {
   getAllProperties,
   getPropertyById,
 } from '../controllers/propertyEndpoints/propertyendpoint';
-// import { uploadImageController } from '../controllers/uploadImageController';
 import { checkToken } from '../middleware/auth';
+import { uploadImageController } from '../controllers/uploadImageController';
 
 import {
   validatePropertyInput,
