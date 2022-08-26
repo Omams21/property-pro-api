@@ -9,7 +9,7 @@
     "lint": "\"./node_modules/.bin/eslint\" \"./src\"",
     "pretty": "prettier --write \"**/*.{js,json}\" \"!node_modules/**\"",
     "postpretty": "npm run lint -- --fix",
-    "runQuery": "./build/utils/runQuery"
+    "runQuery": "node ./build/utils/runQuery"
   },
   "dependencies": {
     "@babel/cli": "^7.17.6",
