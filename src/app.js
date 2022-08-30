@@ -19,7 +19,7 @@ const swaggerDefinition = {
 const options = {
   swaggerDefinition,
   // Paths to files containing OpenAPI definitions
-  apis: ['./src/routes/*.js'],
+  apis: [ './src/routes/*.js' ],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
@@ -28,7 +28,7 @@ const app = express();
 
 app.use('/propertypro-documentation', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
