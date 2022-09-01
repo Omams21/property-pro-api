@@ -282,7 +282,7 @@ authenticationRouter.get('/properties', getAllProperties);
 authenticationRouter.get('/property/:id', getPropertyById);
 /**
  * @swagger
- * /agent/property/{id}:
+ * /agent/property:
  *   get:
  *     tags:
  *       - Property Details
