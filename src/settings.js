@@ -1,4 +1,4 @@
 import dotenv from 'dotenv';
 
 dotenv.config();
-export const DATABASE_URL = process.env.CONNECTION_STRING;
+export const CONNECTION_URL = process.env.DATABASE_URL;
