@@ -60,7 +60,8 @@ export const agentLogin = async (req, res) => {
     if (!validPassword) {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
-    const user = { email, id: validEmail.id };
+    const { id } = validEmail.rows[0];
+    const user = { id, email };
     const token = assignToken(user);
     return res
       .status(201)
