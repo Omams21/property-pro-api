@@ -322,7 +322,7 @@ authenticationRouter.get('/property/:id', getPropertyById);
 authenticationRouter.get('/agent/property', checkToken, getAgentProperties);
 /**
  * @swagger
- * /property/{id}:
+ * /agent/property/{id}:
  *   put:
  *     tags:
  *       - Property Details
