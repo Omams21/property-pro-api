@@ -368,7 +368,7 @@ authenticationRouter.get('/agent/property', checkToken, getAgentProperties);
 authenticationRouter.put('/agent/property/:id', checkToken, editProperty);
 /**
  * @swagger
- * /property/{id}:
+ * /agent/property/{id}:
  *   delete:
  *     tags:
  *       - Property Details
